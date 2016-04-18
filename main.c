@@ -14,7 +14,7 @@ void sobreNosotros(void)
 	do
 	{
 		system("cls");
-		printf("En EPA developers llevamos trabajando en aplicaciones para dispositivos moviles con intencion de mejorar y hacer mas facil las vidas de nuestros usuarios. Nuestros fundadores son Elena Perez de Iriarte, Paula Urteaga y Adrian Michelena. Nuestra andadura como grupo de desarrolladores comenzo con esta aplicacion de la cual estamos muy orgullosos.\n");
+		printf("\nEn EPA developers llevamos trabajando en aplicaciones para dispositivos moviles con intencion de mejorar y hacer mas facil las vidas de nuestros usuarios. Nuestros fundadores son Elena Perez de Iriarte, Paula Urteaga y Adrian Michelena. Nuestra andadura como grupo de desarrolladores comenzo con esta aplicacion de la cual estamos muy orgullosos.\n");
 		printf("\nSalir (1=Si/0=No): ");
 		scanf( "%d", &key);
 	}while(key!=1);
@@ -26,7 +26,7 @@ void infoApp(void)
 		do
 		{
 			system("cls");
-			printf("Qtedex (Version 2.3.2) \n");
+			printf("\nQtedex (Version 2.3.2) \n");
 			printf("\nDesarrollado por EPA developers");
 			printf("\n\nRequisitos recomendados:");
 			printf("\n\tMemoria Ram:\t\t500 Mbytes");
@@ -46,62 +46,6 @@ void clear_if_needed(char *str)
     }
 }
 
-int checkuser(char * username)
-{
-	FILE *entrada;
-	char linea[MAX_LENGHT];
-	int resultado = 1;
-
-	if ((entrada = fopen(NOM_ARCHIVO_USER, "r")) == NULL)
-	{
-	    resultado = 2;
-		return resultado;
-	}
-
-	while (fgets(linea, MAX_LENGHT, entrada) != NULL)
-	{
-		fscanf(entrada, "%s" ,linea);
-		resultado = strcmp(username, linea);
-	}
-
-	return resultado;
-}
-
-int checkboth(char * username, char * password)
-{
-	FILE * fileuser;
-	FILE * filepass;
-	char lineauser[MAX_LENGHT];
-	char lineapass[MAX_LENGHT];
-	int resultado = 1;
-
-	if ((fileuser = fopen(NOM_ARCHIVO_USER, "r")) == NULL || (filepass = fopen(NOM_ARCHIVO_PASS, "r")) == NULL)
-	{
-	    resultado = 2;
-		return resultado;
-	}
-
-	while (fgets(lineauser, MAX_LENGHT, fileuser) != NULL)
-	{
-		//fscanf(fileuser, "%s" ,lineauser);
-
-		fscanf(filepass, "%s" ,lineapass);
-
-		printf("\nUser:%sPassWord:%s", lineauser,lineapass);
-		resultado = strcmp(username, lineauser);
-
-		if(resultado==0)
-		{
-			resultado = strcmp(password, lineapass);
-			return resultado;
-		}
-
-		resultado = 1;
-	}
-
-	return resultado;
-}
-
 void registro(void)
 {
 	char * username;
@@ -113,7 +57,7 @@ void registro(void)
 	if (fgets (str, MAX_LENGHT, stdin) != NULL)
 	{
 		system("cls");
-		printf("Usuario: ");
+		printf("\nUsuario: ");
 		fgets(str,MAX_LENGHT,stdin);
 		clear_if_needed(str);
 		sscanf(str, "%s", savename);
@@ -141,8 +85,11 @@ void registro(void)
 			}
 			else
 			{
-				//system("cls");
-				printf("El usuario ya existe");
+				system("cls");
+				printf("\nEl usuario ya existe");
+				printf("Pulse una tecla para continuar: ");
+				char cad; 
+				cad = (char)getch();
 			}
 		}
 		else
@@ -166,7 +113,7 @@ void iniciarSesion(void)
 	if (fgets (str, MAX_LENGHT, stdin) != NULL)
 	{
 		system("cls");
-		printf("Usuario: ");
+		printf("\nUsuario: ");
 		fgets(str,MAX_LENGHT,stdin);
 		clear_if_needed(str);
 		sscanf(str, "%s", savename);
@@ -190,17 +137,28 @@ void iniciarSesion(void)
 
 			if(check==0)
 			{
-				printf("Has iniciado sesion");
+				system("cls");
+				printf("\nHas iniciado sesion\n");
+				printf("Pulse una tecla para continuar: ");
+				char cad; 
+				cad = (char)getch(); 
 			}
 			else
 			{
-				//system("cls");
-				printf("Usuario o contrasena erroneos");
+				system("cls");
+				printf("\nUsuario o contrasena erroneos");
+				printf("Pulse una tecla para continuar: ");
+				char cad; 
+				cad = (char)getch(); 
 			}
 		}
 		else
 		{
-			printf("No existen usuarios");
+			system("cls");
+			printf("\nNo existen usuarios");
+			printf("Pulse una tecla para continuar: ");
+			char cad; 
+			cad = (char)getch(); 
 		}
 
 
@@ -220,7 +178,7 @@ void menuAcceso(void)
 		printf("\n1.Iniciar sesion\n");
 		printf("2.Registrarse\n");
 		printf("3.Volver.\n");
-		printf("\n   Eleccion: ");
+		printf("\nEleccion: ");
 
 		scanf( "%d", &eleccion );
 
@@ -237,7 +195,7 @@ void menuAcceso(void)
 			case 3:
 				break;
 			default:
-				printf("\n Elija una de las opciones tecleando su correspondiente numero \n");
+				printf("\nElija una de las opciones tecleando su correspondiente numero \n");
 				break;
 		}
 	}while(eleccion!=3);
@@ -251,7 +209,7 @@ int main()
 	setvbuf(stdout, 0, _IONBF, 0);
 
 	system("cls");
-	printf("Bienvenido a la aplicacion QTedex realizada por EPA Developers.\n");
+	printf("\nBienvenido a la aplicacion QTedex realizada por EPA Developers.\n");
 	printf("Una vez que la pruebes tu mundo no sera igual.\n");
 
     printf("\nEntrar (1=Si/0=No): ");
@@ -262,12 +220,12 @@ int main()
     {
         do
         {
-            //system("cls");
+            system("cls");
             printf("\n1.Acceder\n");
             printf("2.Sobre Nosotros\n");
             printf("3.Informacion de la aplicacion\n");
             printf("4.Cerrar\n");
-            printf("\n   Eleccion: ");
+            printf("\nEleccion: ");
 
             scanf( "%d", &opcion );
 
@@ -284,7 +242,7 @@ int main()
 					break;
 				case 4: break;
 				default:
-					printf("\n Elija una de las opciones tecleando su correspondiente numero \n");
+					printf("\nElija una de las opciones tecleando su correspondiente numero \n");
 					break;
             }
         }while(opcion!=4);
