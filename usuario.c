@@ -71,7 +71,6 @@ int comprobarUsername(Usuario u1)
 	char str[MAX_LENGHT+2];
 	int i=1;
 	char name [MAX_LENGHT];
-	char pass [MAX_LENGHT];
 	int checker=1;
 
 	while(fgets(str,MAX_LENGHT+2,fp)!=NULL)
